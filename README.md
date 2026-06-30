@@ -5,7 +5,6 @@ sudo nano /etc/containerd/config.toml
    config_path = "/etc/containerd/certs.d"
 
 
-
 sudo mkdir -p /etc/containerd/certs.d/<ip address>
 
 sudo nano /etc/containerd/certs.d/<ip address>/hosts.toml
@@ -41,7 +40,7 @@ spec:
       containers:
       - name: gateway-service
         image: 13.233.236.101/crm/gateway:latest
-        imagePullPolicy: Always   
+        imagePullPolicy: Always
 
 ---
 apiVersion: v1
