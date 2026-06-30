@@ -17,8 +17,8 @@ server = "http://<ip address>"
   capabilities = ["pull", "resolve"]
 
 sudo systemctl restart containerd
-=======================================================================
 
+-----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -42,6 +42,7 @@ spec:
       - name: gateway-service
         image: 13.233.236.101/crm/gateway:latest
         imagePullPolicy: Always   
+
 ---
 apiVersion: v1
 kind: Service
