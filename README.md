@@ -17,3 +17,48 @@ server = "http://<ip address>"
   capabilities = ["pull", "resolve"]
 
 sudo systemctl restart containerd
+=======================================================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crm-gateway-service
+  labels:
+    app: gateway
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      name: crm-gateway-service
+      labels: 
+        app: gateway
+    spec:
+      imagePullSecrets:
+        - name: harbor-cred
+      containers:
+      - name: gateway-service
+        image: 13.233.236.101/crm/gateway:latest
+        imagePullPolicy: Always   
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-service
+spec:
+  type: NodePort
+  selector:
+    app: gateway
+  ports:
+    - port: 80
+      targetPort: 2000
+      nodePort: 30000
+
+---
+kubectl create secret docker-registry harbor-cred \
+  --docker-server=<ip_address> \
+  --docker-username=admin \
+  --docker-password=admin
+ 
