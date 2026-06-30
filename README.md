@@ -17,7 +17,7 @@ server = "http://<ip address>"
 
 sudo systemctl restart containerd
 
-
+--------------------------------------------
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -42,7 +42,7 @@ spec:
         image: 13.233.236.101/crm/gateway:latest
         imagePullPolicy: Always
 
-
+-------------------------------------------------
 apiVersion: v1
 kind: Service
 metadata:
@@ -56,7 +56,7 @@ spec:
       targetPort: 2000
       nodePort: 30000
 
-
+-----------------------------------------------------
 kubectl create secret docker-registry harbor-cred \
   --docker-server=<ip_address> \
   --docker-username=admin \
